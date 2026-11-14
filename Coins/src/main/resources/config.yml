@@ -1,0 +1,161 @@
+# ============================================================
+#  Coins - config.yml
+#  Colors: use & codes (e.g. "&6" = gold) or hex (e.g. "&#FFAA00").
+#  IMPORTANT: always wrap any text that starts with & in "quotes".
+#  After editing run /coins reload (autosave interval needs a restart).
+# ============================================================
+
+currency:
+  name: "Coins"
+  icon: "⛁"            # the coin icon shown next to amounts (gold in all messages/GUI)
+  starting-balance: 0   # coins a brand new player starts with
+
+earning:
+  amount: 5              # coins paid per payout
+  interval-seconds: 60   # one payout for every 60 seconds of online time (5 coins / 1 minute)
+  action-bar: true       # show "+5 coins" above the hotbar on every payout
+  afk:
+    enabled: false       # true = players who stand still do not earn
+    timeout-seconds: 300 # idle time before a player counts as AFK
+
+autosave-minutes: 5      # how often balances are saved (also saved on quit/stop)
+log-purchases: true      # print shop purchases in the console
+
+sounds:                  # sound keys, leave "" to disable one
+  success: "entity.player.levelup"
+  fail: "entity.villager.no"
+  click: "ui.button.click"
+  earn: ""
+
+# ------------------------------------------------------------
+#  RARITIES  (order here = order items appear in the shop)
+# ------------------------------------------------------------
+rarities:
+  common:
+    name: "Common"
+    color: "&f"
+  uncommon:
+    name: "Uncommon"
+    color: "&a"
+  rare:
+    name: "Rare"
+    color: "&9"
+  epic:
+    name: "Epic"
+    color: "&d"
+  legendary:
+    name: "Legendary"
+    color: "&6"
+
+# ------------------------------------------------------------
+#  SPAWNERS  - one block per rarity: a price and the mobs in that tier.
+#  Mob names are vanilla entity names (PIG, MAGMA_CUBE, IRON_GOLEM ...).
+# ------------------------------------------------------------
+spawners:
+  common:
+    price: 1000
+    items: [PIG, COW, CHICKEN, SHEEP]
+  uncommon:
+    price: 2500
+    items: [ZOMBIE, SKELETON, SPIDER]
+  rare:
+    price: 5000
+    items: [CREEPER, SLIME, MAGMA_CUBE, BLAZE]
+  epic:
+    price: 10000
+    items: [ENDERMAN, WITHER_SKELETON]
+  legendary:
+    price: 20000
+    items: [IRON_GOLEM]
+
+# ------------------------------------------------------------
+#  ARMOR TRIMS  - smithing templates, priced by how rare they are in vanilla.
+#  Use the short name (SENTRY) or the full material name.
+# ------------------------------------------------------------
+trims:
+  common:
+    price: 100
+    items: [SENTRY, DUNE, COAST, WILD, TIDE]
+  uncommon:
+    price: 250
+    items: [SNOUT, RIB, WAYFINDER, RAISER, SHAPER, HOST]
+  rare:
+    price: 600
+    items: [EYE, SPIRE, FLOW, BOLT]
+  epic:
+    price: 1500
+    items: [VEX]
+  legendary:
+    price: 3000
+    items: [WARD, SILENCE]
+
+# ------------------------------------------------------------
+#  GUI TEXT
+#  Placeholders: {icon} {balance} {count} {rarity} {price} {status} {missing}
+# ------------------------------------------------------------
+gui:
+  main-title: "&6{icon} Coin Shop"
+  spawners-title: "&6{icon} Coin Shop &8» &fSpawners"
+  trims-title: "&6{icon} Coin Shop &8» &fArmor Trims"
+
+  filler-material: GRAY_STAINED_GLASS_PANE
+  spawners-icon: SPAWNER
+  trims-icon: SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE
+  balance-icon: GOLD_NUGGET
+
+  spawners-name: "&6&lSpawners"
+  spawners-lore:
+    - "&7Spawners priced by mob rarity."
+    - ""
+    - "&7Items: &f{count}"
+    - "&eClick to browse!"
+  trims-name: "&6&lArmor Trims"
+  trims-lore:
+    - "&7Armor trim templates priced by rarity."
+    - ""
+    - "&7Items: &f{count}"
+    - "&eClick to browse!"
+
+  balance-name: "&6{icon} Your Coins"
+  balance-lore:
+    - "&7Balance: &6{icon} {balance}"
+
+  back-name: "&c« Back"
+  previous-name: "&e◀ Previous page"
+  next-name: "&eNext page ▶"
+  close-name: "&cClose"
+
+  # Lore added under every shop item
+  entry-lore:
+    - ""
+    - "&7Rarity: {rarity}"
+    - "&7Price: &6{icon} {price}"
+    - ""
+    - "{status}"
+  status-affordable: "&aClick to buy!"
+  status-too-expensive: "&cYou need &6{icon} {missing} &cmore."
+
+# ------------------------------------------------------------
+#  MESSAGES
+#  Placeholders: {prefix} {icon} {player} {amount} {balance} {price} {item} {missing}
+# ------------------------------------------------------------
+messages:
+  prefix: "&6{icon} &8» &r"
+  no-permission: "{prefix}&cYou don't have permission to do that."
+  players-only: "{prefix}&cOnly players can use this command."
+  usage: "{prefix}&7Usage: &e/coins &7or &e/coins balance <player>"
+  usage-admin: "{prefix}&7Admin: &e/coins give|take|set <player> <amount> &7- &e/coins reload"
+  player-not-found: "{prefix}&cPlayer &f{player} &chas never joined this server."
+  invalid-amount: "{prefix}&cInvalid amount: &f{amount}"
+  balance-self: "{prefix}&7You have &6{icon} {balance} &7coins."
+  balance-other: "{prefix}&f{player} &7has &6{icon} {balance} &7coins."
+  given: "{prefix}&aGave &6{icon} {amount} &ato &f{player}&a. They now have &6{icon} {balance}&a."
+  taken: "{prefix}&aTook &6{icon} {amount} &afrom &f{player}&a. They now have &6{icon} {balance}&a."
+  set: "{prefix}&aSet &f{player}&a's coins to &6{icon} {balance}&a."
+  not-enough-admin: "{prefix}&c{player} only has &6{icon} {balance}&c."
+  received: "{prefix}&aYou received &6{icon} {amount} &acoins."
+  reloaded: "{prefix}&aCoins config reloaded."
+  earn-actionbar: "&6+{amount} {icon} Coins"
+  purchase-success: "{prefix}&aYou bought &f{item} &afor &6{icon} {price}&a. Balance: &6{icon} {balance}"
+  not-enough-coins: "{prefix}&cYou need &6{icon} {price}&c but only have &6{icon} {balance}&c."
+  inventory-full: "{prefix}&cYour inventory is full. Free a slot and try again."

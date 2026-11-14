@@ -1,0 +1,30 @@
+name: Coins
+version: '${project.version}'
+main: com.smp.coins.CoinsPlugin
+api-version: '26.2'
+description: Coins currency earned by playtime, with a Coin Shop for spawners and armor trims.
+softdepend: [PlaceholderAPI]
+
+commands:
+  coins:
+    description: View or manage Coins
+    usage: /coins [balance <player>|give|take|set|reload]
+    aliases: [coin, mycoins]
+  coinshop:
+    description: Open the Coin Shop
+    usage: /coinshop [spawners|trims]
+    aliases: [cshop]
+
+permissions:
+  coins.admin:
+    description: Give, take, set coins and reload the plugin
+    default: op
+  coins.shop:
+    description: Use the Coin Shop
+    default: true
+  coins.balance.others:
+    description: Check another player's coin balance
+    default: true
+  coins.earn:
+    description: Earn coins for playtime
+    default: true
